@@ -3,6 +3,7 @@ library(tidyverse)
 library(readr)
 library(stringr)
 library(tibble)
+library(magrittr)
 
 #INPUT DATASET####
 
