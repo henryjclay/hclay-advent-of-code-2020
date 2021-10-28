@@ -10,26 +10,26 @@ library(tidyr)
 
 ##Read input####
 #test input:
-input <- "35
-20
-15
-25
-47
-40
-62
-55
-65
-95
-102
-117
-150
-182
-127
-219
-299
-277
-309
-576"
+# input <- "35
+# 20
+# 15
+# 25
+# 47
+# 40
+# 62
+# 55
+# 65
+# 95
+# 102
+# 117
+# 150
+# 182
+# 127
+# 219
+# 299
+# 277
+# 309
+# 576"
 input <- read_file("puz9_input.txt")
 
 ##Parse Input to Tibble####
@@ -108,4 +108,37 @@ found_break
 break_value
 
 #Part TWO####
+##Break Value is the new target
+part_two_df <- df
 
+##initialize
+ind <- 1
+ind1 <- 2
+len <- dim(part_one_df)[1]
+
+while (ind<len) {
+  ##main loop
+  ind1 <- ind + 1
+  value <- as.numeric(part_two_df[ind,1])
+  test_list <- c(value)
+  test_sum <- sum(test_list)
+  
+  ##sub loop
+  while (test_sum<break_value) {
+    value <- as.numeric(part_two_df[ind1,1])
+    test_list <- append(test_list,value)
+    test_sum <- sum(test_list)
+    if (test_sum==break_value) {
+      break
+    }
+    ind1 <- ind1 + 1
+  }
+  if (test_sum==break_value) {
+    break
+  }
+  ind <- ind + 1
+}
+
+#Answer!!
+part_two_answer <- min(test_list) + max(test_list)
+part_two_answer
